@@ -1,0 +1,20 @@
+{
+  "appId": "com.marcosdandrea.boilerplate",
+  "productName": "Boilerplate",
+  "files": ["dist-electron", "dist-react"],
+  "icon": "./resources/icon/icon.ico",
+  "asar": true,
+  "mac": {
+    "icon": "./resources/icon/icon.icns",
+    "target": "dmg"
+  },
+  "linux": {
+    "icon": "./resources/icon/icon.png",
+    "target": "AppImage",
+    "category": "Utility"
+  },
+  "win": {
+    "icon": "./resources/icon/icon.ico",
+    "target": ["portable", "msi"]
+  }
+}
