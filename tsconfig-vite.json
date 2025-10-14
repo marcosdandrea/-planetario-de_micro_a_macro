@@ -18,5 +18,5 @@
       "@contexts/*": ["src/ui/contexts/*"]
     },
   },
-  "include": ["src/ui", "src/common"],
+  "include": ["src/ui", "src/common", "src/app/src/services/ipcServices/services/muckupData.ts"],
 }

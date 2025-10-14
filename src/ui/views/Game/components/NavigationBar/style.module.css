@@ -1,0 +1,11 @@
+.navigationBar{
+    z-index: 10;
+    position: absolute;
+    width: 80%;
+    height: 5rem;
+    background-color: gray;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5rem;
+}

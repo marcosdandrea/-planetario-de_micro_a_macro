@@ -1,6 +1,6 @@
 {
-  "appId": "com.marcosdandrea.boilerplate",
-  "productName": "Boilerplate",
+  "appId": "com.proyecciones.demicroamacro",
+  "productName": "De Micro a Macro",
   "files": ["dist-electron", "dist-react"],
   "icon": "./resources/icon/icon.ico",
   "asar": true,

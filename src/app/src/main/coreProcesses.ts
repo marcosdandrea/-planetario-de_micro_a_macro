@@ -1,5 +1,7 @@
+import { bindIpcServices } from '@src/services/ipcServices';
 import { getStaticDir } from '@src/utils/pathResolver';
 import { Log } from '@utils/log.js';
+import path from 'path';
 const log = new Log('coreProcesses', true);
 
 const coreProcesses = async () => {
@@ -11,14 +13,22 @@ const coreProcesses = async () => {
         const staticDirectory = await getStaticDir();
         log.info(`Static directory: ${staticDirectory}`);
         
-        const { httpServer } = await initServer({ 
+        const { httpServer, app } = await initServer({ 
             serverPort: MAIN_SERVER_PORT,
             staticDir: staticDirectory
         });
+
+        const express = (await import("express")).default;
+
+        const databasePath = path.join(process.cwd(), 'database');     
+        app.use('/database', express.static(databasePath));
+        log.info(`Serving database files from: ${databasePath}`);   
+
         log.info(`Server initialized on port ${MAIN_SERVER_PORT}`);
 
         const { init: initSocket } = await import('@services/Socket/index.js')
         const io = await initSocket({ httpServer });
+        io.on('connection', (socket) => bindIpcServices(socket));
         log.info('Socket initialized.');
 
         log.info('Core processes completed.');

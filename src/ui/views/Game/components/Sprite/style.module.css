@@ -1,0 +1,14 @@
+.sprite{
+    position: absolute;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10rem;
+    will-change: transform, opacity;
+}
+
+.labelsContainer{
+    width: 800px;
+    transition: opacity 0.5s ease-out;
+}
