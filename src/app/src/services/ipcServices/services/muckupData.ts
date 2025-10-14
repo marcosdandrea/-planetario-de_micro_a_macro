@@ -9,10 +9,12 @@ export const mockupData = [
       displayName: 'Átomo de hidrógeno',
       description: 'Unidad básica de la materia, un protón orbitado por un electrón',
       displaySize: '0.1 nm',
+      unit: 'nanómetro',
+      base10Size: 1e-10,
       isIndex: false
     },
     background: {
-      image: null,
+      image: 'universe.jpg',
     }
   },
   {
@@ -23,6 +25,8 @@ export const mockupData = [
       displayName: 'Doble hélice de ADN',
       description: 'La molécula que contiene la información genética',
       displaySize: '2 nm de ancho',
+      base10Size: 2e-9,
+      unit: 'nanómetro',
     },
     background: {
       image: null,
@@ -36,6 +40,8 @@ export const mockupData = [
       displayName: 'Virus (ej. ~100 nm)',
       description: 'Partícula infecciosa que necesita células para replicarse',
       displaySize: '100 nm',
+      base10Size: 1e-7,
+      unit: 'nanómetro',
     },
     background: {
       image: null,
@@ -49,7 +55,8 @@ export const mockupData = [
       displayName: 'Bacteria E. coli',
       description: 'Bacteria típica de ~2 μm de largo',
       displaySize: '2 μm',
-      base10Size: 2e-9
+      base10Size: 2e-6,
+      unit: 'micrómetro',
     },
     background: {
       image: null,
@@ -63,6 +70,8 @@ export const mockupData = [
       displayName: 'Glóbulo rojo',
       description: 'Célula sanguínea encargada de transportar oxígeno',
       displaySize: '8 μm de diámetro',
+      base10Size: 8e-6,
+      unit: 'micrómetro',
     },
     background: {
       image: null,
@@ -76,9 +85,11 @@ export const mockupData = [
       displayName: 'Grano de arena',
       description: 'Partícula mineral visible a simple vista',
       displaySize: '0.5 mm',
+      base10Size: 5e-4,
+      unit: 'milímetro',
     },
     background: {
-      image: 'grass.jpg',
+      image: null,
     }
   },
   {
@@ -89,9 +100,11 @@ export const mockupData = [
       displayName: 'Hormiga',
       description: 'Insecto social de unos milímetros',
       displaySize: '5 mm',
+      base10Size: 5e-3,
+      unit: 'milímetro',
     },
     background: {
-      image: 'grass.jpg',
+      image: null,
     }
   },
   {
@@ -102,10 +115,12 @@ export const mockupData = [
       displayName: 'Persona',
       description: 'Ser humano adulto promedio',
       displaySize: '1.75 m',
-      isIndex: true
+      isIndex: true,
+      base10Size: 1.75,
+      unit: 'metro',
     },
     background: {
-      image: 'grass.jpg',
+      image: null,
     }
   },
   {
@@ -116,9 +131,11 @@ export const mockupData = [
       displayName: 'Automóvil',
       description: 'Vehículo de uso cotidiano',
       displaySize: '4.5 m',
+      base10Size: 4.5,
+      unit: 'metro',
     },
     background: {
-      image: 'sky.jpg',
+      image: null,
     }
   },
   {
@@ -129,9 +146,11 @@ export const mockupData = [
       displayName: 'Obelisco de \n Buenos Aires',
       description: 'Monumento icónico de la ciudad',
       displaySize: '67.5 m',
+      base10Size: 67.5,
+      unit: 'metro',
     },
     background: {
-      image: 'sky.jpg',
+      image: null,
     }
   },
   {
@@ -142,9 +161,11 @@ export const mockupData = [
       displayName: 'Isla de Manhattan',
       description: 'Isla urbana de referencia; longitud aproximada norte–sur',
       displaySize: '21.6 km',
+      base10Size: 21600,
+      unit: 'kilómetro',
     },
     background: {
-      image: 'sky.jpg',
+      image: null,
     }
   },
   {
@@ -155,6 +176,8 @@ export const mockupData = [
       displayName: 'La Luna',
       description: 'Satélite natural de la Tierra',
       displaySize: '3,474.8 km',
+      base10Size: 3474.8,
+      unit: 'kilómetro',
     },
     background: {
       image: 'universe.jpg',
@@ -168,6 +191,8 @@ export const mockupData = [
       displayName: 'Planeta Tierra',
       description: 'El planeta donde vivimos',
       displaySize: '12,742 km',
+      base10Size: 12742,
+      unit: 'kilómetro',
     },
     background: {
       image: 'universe.jpg',
@@ -181,6 +206,8 @@ export const mockupData = [
       displayName: 'Júpiter',
       description: 'El planeta más grande del sistema solar',
       displaySize: '139,820 km',
+      base10Size: 139820,
+      unit: 'kilómetro',
     },
     background: {
       image: 'universe.jpg',
@@ -194,6 +221,8 @@ export const mockupData = [
       displayName: 'El Sol',
       description: 'Nuestra estrella, fuente principal de energía',
       displaySize: '1,392,700 km',
+      base10Size: 1392700,
+      unit: 'kilómetro',
     },
     background: {
       image: 'universe.jpg',

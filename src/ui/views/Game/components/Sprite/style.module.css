@@ -1,6 +1,6 @@
 .sprite{
     position: absolute;
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    transition: transform 150ms ease-out, opacity 0.5s ease-out;
     display: flex;
     flex-direction: row;
     align-items: center;

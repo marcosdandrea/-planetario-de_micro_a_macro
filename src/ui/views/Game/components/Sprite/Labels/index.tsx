@@ -18,6 +18,7 @@ const Labels = React.memo(({title, subtitle, displaySize, alignment}:{title: str
         <div 
             style={{
                 alignItems: alignment === 'right' ? 'flex-end' : (alignment === 'center' ? 'center' : 'flex-start'),
+                textAlign: alignment
             }}
             className={style.labels}>
             <div className={style.title}>{renderTextWithLineBreaks(title)}</div>

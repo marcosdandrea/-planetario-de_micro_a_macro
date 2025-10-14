@@ -1,11 +1,15 @@
 .navigationBar{
     z-index: 10;
     position: absolute;
-    width: 80%;
+    width: 85%;
     height: 5rem;
-    background-color: gray;
+    background-color: rgba(0, 0, 0, 0.171);
     bottom: 5rem;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 5rem;
+    border: solid 2px #009fe3;
+    box-sizing: border-box;
+    background-image: url('/resources/images/regla.png');
+    background-size: cover;
 }

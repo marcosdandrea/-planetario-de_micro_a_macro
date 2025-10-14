@@ -1,5 +1,6 @@
 import { backgroundType } from '@common/types/background.type';
 import { SpriteType } from '@common/types/sprite.type';
+import useUnits from '@hooks/useUnits';
 import React, {createContext, useEffect, useState} from 'react';
 
 export const GameContext = createContext({} as GameContextType);
@@ -34,9 +35,11 @@ interface GameContextType {
     setAutoResetAfterInactivity?: (newTime: number) => void;
     backgrounds?: backgroundType[];
     setBackgrounds?: (newBackgrounds: backgroundType[]) => void;
+    units?: import("@common/types/units.type").UnitType[];
 }
 
 const GameContextProvider = ({children}: GameContextProviderProps) => {
+    const { units } = useUnits();
     const [sprites, _setSprites] = useState<SpriteType[]>();
     const [backgrounds, setBackgrounds] = useState<backgroundType[]>();
     const [zMax, _setZMax] = useState(5000);
@@ -107,6 +110,7 @@ const GameContextProvider = ({children}: GameContextProviderProps) => {
         cameraFocusRange, setCameraFocusRange,
         autoResetAfterInactivity, setAutoResetAfterInactivity,
         backgrounds, setBackgrounds,
+        units
     }
 
     return ( 

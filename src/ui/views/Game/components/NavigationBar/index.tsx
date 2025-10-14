@@ -20,7 +20,7 @@ const NavigationBar = () => {
         const progress = clampedZPos / totalLength;
         
         // Calcular la posición máxima considerando el ancho del indicador
-        const maxPosition = navigationBarWidth - indicatorWidth;
+        const maxPosition = navigationBarWidth - indicatorWidth /2;
         const indicatorX = progress * maxPosition;
 
         indicatorRef.current.style.left = `${indicatorX}px`;

@@ -3,9 +3,16 @@
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.8);
-    transition: left 0.5s linear;
+    width: 180px;
+    aspect-ratio: 0.94;
+    transition: left 150ms linear;
+    background-image: url('/resources/images/cursor.png');
+    background-size: contain;
+    filter: 
+        drop-shadow(20px 20px 20px rgba(0, 0, 0, 0.555)),
+        drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.8));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
