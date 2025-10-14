@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import { copyFileSync } from 'fs';
+import { copyFileSync, cpSync, existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 
 console.log('Building headless version...');
@@ -46,6 +46,17 @@ build({
             resolve('dist/headless/package.json')
         );
         console.log('Copied package.json for headless distribution');
+
+        // Copy database folder
+        const databaseSrc = resolve('database');
+        const databaseDest = resolve('dist/headless/database');
+        
+        if (existsSync(databaseSrc)) {
+            cpSync(databaseSrc, databaseDest, { recursive: true });
+            console.log('Copied database folder for headless distribution');
+        } else {
+            console.warn('Database folder not found, skipping copy');
+        }
                 
     } catch (error) {
         console.error('Error copying files:', error);
