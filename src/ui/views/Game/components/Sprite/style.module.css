@@ -6,9 +6,6 @@
     align-items: center;
     column-gap: 10rem;
     will-change: transform, opacity;
-}
-
-.labelsContainer{
-    width: 800px;
-    transition: opacity 0.5s ease-out;
+    width: fit-content;
+    overflow: hidden;
 }

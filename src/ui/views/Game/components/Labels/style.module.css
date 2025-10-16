@@ -1,0 +1,32 @@
+.label{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 2rem;
+    background-color: rgba(75, 75, 75, 0.4);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: solid 4px rgba(255, 255, 255, 0.322);
+    width: fit-content;
+    line-height: 2.5rem;
+    width: 50vw;
+}
+
+.title{
+    font-size: 5rem;
+    font-weight: bold;
+    line-height: 5rem;
+}
+
+.subtitle{
+    font-size: 2rem;
+    margin-top: 4px;
+    opacity: 0.8;
+    
+}
+
+.displaySize{
+    font-size: 3rem;
+    margin-top: 2px;
+    opacity: 0.6;
+}

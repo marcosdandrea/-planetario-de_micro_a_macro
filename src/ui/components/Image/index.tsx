@@ -7,7 +7,11 @@ interface ImageProps {
 }
 
 const Image = React.memo(({ src, width, height }: ImageProps) => {
-    return <img src={src} alt="" width={width} height={height} />;
+    return <img 
+        src={src} 
+        alt="" 
+        width={"auto"} 
+        height={height} />;
 });
 
 Image.displayName = 'Image';

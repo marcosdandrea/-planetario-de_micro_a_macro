@@ -4,12 +4,15 @@ import Image from "@components/Image";
 import { SpriteType } from '@common/types/sprite.type';
 import useTravelPosition from '@hooks/useTravelPosition';
 import { GameContext } from '@contexts/GameContext';
-import Labels from './Labels';
+import Labels from '../Labels';
+import SpriteContainer, { spritesContainerContext } from '../SpritesContainer';
+import LabelContainer from '../LabelContainer';
 
 const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
     const spriteRef = useRef<HTMLDivElement>(null);
     const { zPos: travelPositionZ } = useTravelPosition()
     const { distanceBetweenSprites, cameraFocusRange, cullingDistance, units } = useContext(GameContext)
+    const { centerSprite, containerSize } = useContext(spritesContainerContext);
 
     const [image, setImage] = useState(data.image);
     const [xPos, setXPos] = useState(0);
@@ -17,6 +20,13 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
     const [zPos, setZPos] = useState(0);
     const [zPosOffset, setZPosOffset] = useState(0);
     const [displaySize, updateDisplaySize] = useState("");
+
+    const shouldCenter = useMemo(() => {
+        const isIndex = data.isIndex || false;
+        return index == 0 || isIndex;
+    }, [index, data.isIndex]);
+
+    const isOdd = index % 2 !== 0;
 
     // Calcular distancia a la cámara
     const distanceToCamera = useMemo(() => {
@@ -59,16 +69,7 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
         setZPosOffset(newZPosOffset);
     }, [zPos, travelPositionZ]);
 
-    const centerImageOnScreen = () => {
-        const width = spriteRef.current?.offsetWidth || 1000;
-        const height = spriteRef.current?.offsetHeight || 1000;
-        return ({
-            x: (window.innerWidth / 2) - (width / 2),
-            y: (window.innerHeight / 2) - (height / 2)
-        });
-    }
-
-    const getRandomYOffset = ({ maxOffset, blindRange }: { maxOffset: number; blindRange?: [number, number] }) => {
+    const getRandomOffset = ({ maxOffset, blindRange }: { maxOffset: number; blindRange?: [number, number] }) => {
         //should return a random offset between -maxOffset and maxOffset, but not within the blindRange
         const min = -maxOffset;
         const max = maxOffset;
@@ -99,32 +100,27 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
     useEffect(() => {
         if (!spriteRef.current || !image) return;
 
-        const isIndex = data.isIndex || false;
-        const shouldCenter = index == 0 || isIndex;
-
         setDisplaySize();
-
-        // Configuración inicial para sprites que no necesitan centrarse
-        if (!shouldCenter) {
-            setXPos(index % 2 == 0 ? 100 : -100);
-            const { x, y } = centerImageOnScreen();
-            setYPos(y + getRandomYOffset({ maxOffset: 1000 }));
-            setZPos(index * distanceBetweenSprites);
-            return;
-        }
 
         // ResizeObserver para sprites que necesitan centrarse
         const resizeObserver = new ResizeObserver((entries) => {
             for (let entry of entries) {
                 const { width, height } = entry.contentRect;
+
+                console.log ("Sprite resized", { width, height });
                 
                 if (width > 0 && height > 0) {
-                    // Calcular posición centrada con las dimensiones reales
-                    const x = (window.innerWidth / 2) - (width / 2);
-                    const y = (window.innerHeight / 2) - (height / 2);
-                                        
-                    setXPos(x);
-                    setYPos(y);
+                    const { yPos, xPos } = centerSprite({ width, height });
+
+                    
+                    if (shouldCenter) {
+                        setXPos(xPos);
+                        setYPos(yPos);
+                    } else {
+                        setYPos(yPos + getRandomOffset({ maxOffset: containerSize.height }));
+                        setXPos(xPos + getRandomOffset({ maxOffset: containerSize.width, blindRange: [-50, 50] }));
+                    }
+
                     setZPos(index * distanceBetweenSprites);
                 }
             }
@@ -133,13 +129,12 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
         resizeObserver.observe(spriteRef.current);
 
         return () => resizeObserver.disconnect();
-    }, [image, index, data.isIndex, distanceBetweenSprites])
+    }, [image, index, data.isIndex, distanceBetweenSprites, shouldCenter])
 
     useEffect(() => {
         if (!data || !data.image) return;
         setImage(`http://localhost:3000/database/${data.image}`);
     }, [data, spriteRef]);
-
 
     return (
         <div
@@ -148,19 +143,16 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
             style={{
                 transform: `translate3D(${xPos}px, ${yPos}px, ${zPosOffset}px)`,
                 opacity: opacity,
-                flexDirection: xPos < 0 ? 'row-reverse' : 'row'
+                flexDirection: isOdd ? 'row-reverse' : 'row'
             }}>
             {
-                <div
-                    className={style.labelsContainer}
-                    style={{ opacity: blurAmount > 10 ? opacity * 0.4 : opacity }}>
-                    <Labels
-                        alignment={xPos > 0 ? 'right' : (xPos < 0 ? 'left' : 'center')}
+               <LabelContainer style={{ opacity: blurAmount > 10 ? opacity * 0.4 : opacity }}>
+                 <Labels
+                       alignment={!isOdd ? 'right' : (xPos < 0 ? 'left' : 'center')}
                         title={data.displayName}
                         subtitle={data.description}
                         displaySize={displaySize} />
-
-                </div>
+                </LabelContainer>
             }
             {
                 opacity > 0 &&

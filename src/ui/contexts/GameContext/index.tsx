@@ -51,16 +51,14 @@ const GameContextProvider = ({children}: GameContextProviderProps) => {
     const [travelSpeed, setTravelSpeed] = useState(4);
     const [cullingDistance, setCullingDistance] = useState(20000);
     const [spawnDistance, setSpawnDistance] = useState(2000);
-    const [cameraFocusRange, setCameraFocusRange] = useState([500,8500]);
+    const [cameraFocusRange, setCameraFocusRange] = useState([3500,5500]);
     const [autoResetAfterInactivity, setAutoResetAfterInactivity] = useState(30000); //in ms
-
-    //console.log ("GameContextProvider render", {zPos, zMax, sprites, distanceBetweenSprites, zIndex, stepsBetweenSprites, travelSpeed});
 
     const setStartAtIndex = () => {
         if(!sprites || sprites.length === 0) return;
         const indexSprite = sprites.findIndex((s)=> s.isIndex);
         if(indexSprite !== -1){
-            _setZPos(indexSprite * distanceBetweenSprites + 500);
+            _setZPos(indexSprite * distanceBetweenSprites + 800);
         }
     }
 
