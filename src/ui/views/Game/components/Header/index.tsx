@@ -5,8 +5,8 @@ const Header = () => {
     return (
         <div className={style.header}>
             <div className={style.logos}>
-                <img src="/resources/images/LogoPlanetario.png" height={50}/>
-                <img src="/resources/images/LogoLab.png"  height={50}/>
+                <div className={style.logoPlanetario}/>
+                <div className={style.logoLab}/>
             </div>
             <div className={style.title}>
                 De lo Micro <br/>a lo Macro

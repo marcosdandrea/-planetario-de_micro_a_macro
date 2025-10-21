@@ -1,9 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { getDatabasePath } from "@src/utils/pathResolver.js";
 
-export const readDbFile = () => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(path.join(process.cwd(), 'database/db.json'), 'utf-8', (err, data) => {
+export const readDbFile = async () => {
+    return new Promise(async (resolve, reject) => {
+        const databasePath = await getDatabasePath();
+        fs.readFile(path.join(databasePath, 'db.json'), 'utf-8', (err, data) => {
             if (err) {
                 reject(err);
                 return;
@@ -18,9 +20,10 @@ export const readDbFile = () => {
     });
 }
 
-export const writeDbFile = (data: any) => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(path.join(process.cwd(), 'database/db.json'), JSON.stringify(data, null, 2), 'utf-8', (err) => {
+export const writeDbFile = async (data: any) => {
+    return new Promise(async (resolve, reject) => {
+        const databasePath = await getDatabasePath();
+        fs.writeFile(path.join(databasePath, 'db.json'), JSON.stringify(data, null, 2), 'utf-8', (err) => {
             if (err) {
                 reject(err);
                 return;
@@ -52,7 +55,7 @@ async function treeShakeImages() {
             db.image.forEach(img => referencedImages.add(img));
         }
         
-        const dbFolder = path.join(process.cwd(), "database");
+        const dbFolder = await getDatabasePath();
         const files = await fs.promises.readdir(dbFolder);
         const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"];
 

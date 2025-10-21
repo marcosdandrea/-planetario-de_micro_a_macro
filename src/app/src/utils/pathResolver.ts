@@ -22,3 +22,23 @@ export async function getAssetPath() {
   const appPath = await getAppPath();
   return path.join(appPath, isDev ? '.' : '..', '/src/assets');
 }
+
+export async function getDatabasePath() {
+  if (isHeadless) {
+    return path.join(process.cwd(), 'database');
+  } else {
+    const { app } = await import('electron');
+    const appPath = app.getAppPath();
+    return path.join(appPath, 'database');
+  }
+}
+
+export async function getResourcesPath() {
+  if (isHeadless) {
+    return path.join(process.cwd(), 'resources');
+  } else {
+    const { app } = await import('electron');
+    const appPath = app.getAppPath();
+    return path.join(appPath, 'resources');
+  }
+}

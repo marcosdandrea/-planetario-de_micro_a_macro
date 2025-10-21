@@ -7,7 +7,7 @@ export const GameContext = createContext({} as GameContextType);
 
 interface GameContextProviderProps {
     children: React.ReactNode;
-    autoResetTimeout: number;
+    autoResetTimeout?: number;
 }
 
 interface GameContextType {

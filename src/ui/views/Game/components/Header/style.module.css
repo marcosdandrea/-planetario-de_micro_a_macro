@@ -14,8 +14,7 @@
 .logos{
     display: flex;
     flex-direction: row;
-    align-items: space-between;
-    column-gap: 2rem;
+    justify-content: space-between;
 }
 
 .title{
@@ -31,4 +30,22 @@
     font-family: "Lato Black", sans-serif;
     opacity: 0.8;
     color: #41baf1
+}
+
+.logoPlanetario {
+    height: 5rem;
+    aspect-ratio: 1;
+    background-image: url('/resources/images/LogoPlanetario.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logoLab {
+    height: 5rem;
+    aspect-ratio: 1;
+    background-image: url('/resources/images/LogoLab.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
