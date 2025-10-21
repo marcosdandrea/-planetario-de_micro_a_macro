@@ -31,6 +31,7 @@
     "test:isolation": "node scripts/test-isolation.mjs"
   },
   "dependencies": {
+    "antd": "^5.27.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "middleware": "^1.0.0",

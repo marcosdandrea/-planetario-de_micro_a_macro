@@ -1,8 +1,11 @@
 import type { Server } from 'http';
 import type socketIo from 'socket.io';
+import EventManager from "@domain/entities/eventManager"
 import { Log } from '@utils/log.js';
+import { events } from '@common/events';
 
 const log = new Log('socket', true);
+const eventManager = new EventManager();
 
 const init = async ({ httpServer, cors}: { httpServer: Server, cors?: any }) => {
 
@@ -70,10 +73,25 @@ const init = async ({ httpServer, cors}: { httpServer: Server, cors?: any }) => 
             });
 
             resolve(io);
+            bindEvents(io);
         } catch (error) {
             reject(error);
         }
     });
 };
+
+const bindEvents = (io: socketIo.Server) => {
+    eventManager.on(events.spriteCreated, (data) => {
+        io.emit(events.spriteCreated, data);
+    });
+
+    eventManager.on(events.spriteUpdated, (data) => {
+        io.emit(events.spriteUpdated, data);
+    });
+
+    eventManager.on(events.spriteDeleted, (data) => {
+        io.emit(events.spriteDeleted, data);
+    });
+}
 
 export { init };

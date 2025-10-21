@@ -145,10 +145,17 @@ const Indicator = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement
         <div
             ref={ref}
             className={styles.indicator} >
-            <Text>
+            <Text style={{
+                    fontFamily: "Lato Black",
+                    fontSize: ".9rem",
+                    lineHeight: "1rem"
+                    }}>
                 {currentStep.numericDistance}
             </Text>
-            <Text>
+            <Text style={{
+                lineHeight: "1rem",
+                fontSize: "0.7rem"
+                }}>
                 {currentStep.unit}
             </Text>
 

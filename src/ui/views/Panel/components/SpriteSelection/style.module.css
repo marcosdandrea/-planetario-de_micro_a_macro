@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.selectedStep {
+    background-color: rgba(24, 144, 255, 0.1) !important;
+    border-radius: 6px !important;
+}
+
+.selectedStep .ant-steps-item-title {
+    color: #1890ff !important;
+    font-weight: 600 !important;
+}
+
+.selectedStep .ant-steps-item-description {
+    color: #1890ff !important;
+}

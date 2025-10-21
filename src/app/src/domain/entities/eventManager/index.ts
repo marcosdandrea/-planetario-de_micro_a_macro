@@ -25,6 +25,4 @@ export class EventManager extends EventEmitter {
 
 }
 
-export const eventManager = new EventManager();
-
-export default eventManager;
+export default EventManager;

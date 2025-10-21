@@ -1,0 +1,1 @@
+export type eventsType = "spriteCreated" | "spriteUpdated" | "spriteDeleted";

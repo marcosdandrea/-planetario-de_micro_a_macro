@@ -9,7 +9,7 @@
     border: solid 4px rgba(255, 255, 255, 0.322);
     width: fit-content;
     line-height: 2.5rem;
-    width: 50vw;
+    min-width: 40ch;
 }
 
 .title{

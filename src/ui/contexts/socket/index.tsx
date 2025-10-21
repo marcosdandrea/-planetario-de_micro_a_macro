@@ -16,28 +16,13 @@ export const SocketContextProvider = ({children}) => {
             let url: string;
             
             if (currentPort === '5123') {
-                // Estamos en el servidor de desarrollo de Vite
-                try {
-                    // Intentar obtener la configuración del servidor
-                    const response = await fetch('http://localhost:3000/api/config');
-                    if (response.ok) {
-                        const config = await response.json();
-                        url = `http://localhost:${config.serverPort}`;
-                    } else {
-                        // Fallback al puerto por defecto
-                        url = 'http://localhost:3000';
-                    }
-                } catch (error) {
-                    console.warn('Could not fetch server config, using default port 3000');
-                    url = 'http://localhost:3000';
-                }
+                url = 'http://localhost:3000';
             } else {
                 // En producción, conectar al mismo host y puerto desde donde se sirve la página
                 url = `${window.location.protocol}//${window.location.host}`;
             }
             
             setSocketUrl(url);
-            console.log(`Socket.IO connecting to: ${url}`);
             
             const newSocket = io(url, {
                 transports: ['websocket', 'polling'],
@@ -52,12 +37,16 @@ export const SocketContextProvider = ({children}) => {
         initializeSocket();
     }, []);
 
+    const refreshLocation = () => {
+        location.reload();
+    }
+
     useEffect(() => {
         if (!socket) return;
 
         const handleConnect = () => {
             setIsConnected(true);
-            console.log(`Socket connected to: ${socketUrl}`);
+            console.log(`Socket connected`);
         };
 
         const handleDisconnect = (reason: string) => {

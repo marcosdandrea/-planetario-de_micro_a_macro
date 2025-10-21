@@ -1,0 +1,46 @@
+/* Ocultar los botones de incremento/decremento en inputs tipo number */
+.noNumberArrows :global(input[type="number"])::-webkit-outer-spin-button,
+.noNumberArrows :global(input[type="number"])::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    margin: 0 !important;
+    display: none !important;
+}
+
+.noNumberArrows :global(input[type="number"]) {
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+/* Alternativa más específica para Ant Design */
+:global(.ant-input[type="number"])::-webkit-outer-spin-button,
+:global(.ant-input[type="number"])::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    margin: 0 !important;
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+:global(.ant-input[type="number"]) {
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+/* Estilos más agresivos para asegurar que se oculten */
+:global(.ant-input-number) .ant-input-number-input,
+:global(.ant-input-number-input) {
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+:global(.ant-input-number) .ant-input-number-input::-webkit-outer-spin-button,
+:global(.ant-input-number) .ant-input-number-input::-webkit-inner-spin-button,
+:global(.ant-input-number-input)::-webkit-outer-spin-button,
+:global(.ant-input-number-input)::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    margin: 0 !important;
+    display: none !important;
+}

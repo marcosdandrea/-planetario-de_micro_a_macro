@@ -5,7 +5,7 @@ import { SpriteType } from '@common/types/sprite.type';
 import useTravelPosition from '@hooks/useTravelPosition';
 import { GameContext } from '@contexts/GameContext';
 import Labels from '../Labels';
-import SpriteContainer, { spritesContainerContext } from '../SpritesContainer';
+import { spritesContainerContext } from '../SpritesContainer';
 import LabelContainer from '../LabelContainer';
 
 const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
@@ -82,18 +82,17 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
 
     const setDisplaySize = () => {
         if (!units || units.length === 0) {
-            updateDisplaySize(data.displaySize);
+            updateDisplaySize(`tamaño desconocido`);
             return;
         }
         const unitObj = units.find(u => u.name === data.unit);
         if (!unitObj) {
-            updateDisplaySize(data.displaySize);
+            updateDisplaySize(`tamaño desconocido`);
             return;
         }
         const convertedSize = unitObj.fromBase10(data.base10Size);
         const roundedSize = Math.round(convertedSize * 100) / 100;
-        updateDisplaySize(roundedSize.toString());
-        updateDisplaySize(`${roundedSize} ${unitObj.symbol}`);
+        updateDisplaySize(`${roundedSize.toLocaleString("es-AR")} ${unitObj.symbol}`);
     }
 
     // ResizeObserver para centrar automáticamente cuando sea necesario
@@ -106,8 +105,6 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
         const resizeObserver = new ResizeObserver((entries) => {
             for (let entry of entries) {
                 const { width, height } = entry.contentRect;
-
-                console.log ("Sprite resized", { width, height });
                 
                 if (width > 0 && height > 0) {
                     const { yPos, xPos } = centerSprite({ width, height });
@@ -129,7 +126,7 @@ const Sprite = ({ data, index }: { data: SpriteType, index: number }) => {
         resizeObserver.observe(spriteRef.current);
 
         return () => resizeObserver.disconnect();
-    }, [image, index, data.isIndex, distanceBetweenSprites, shouldCenter])
+    }, [image, index, data, distanceBetweenSprites, shouldCenter])
 
     useEffect(() => {
         if (!data || !data.image) return;

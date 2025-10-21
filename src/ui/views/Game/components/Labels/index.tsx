@@ -23,7 +23,7 @@ const Labels = React.memo(({title, subtitle, displaySize, alignment}:{title: str
             className={style.label}>
             <div className={style.title}>{renderTextWithLineBreaks(title)}</div>
             <div className={style.subtitle}>{renderTextWithLineBreaks(subtitle)}</div>
-            <div className={style.displaySize}>{renderTextWithLineBreaks(displaySize)}</div>
+            <div className={style.displaySize}>{displaySize}</div>
         </div>
     );
 })

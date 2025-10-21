@@ -1,22 +1,21 @@
-import { gameRequests } from "@common/ipcRequests";
-import { navigationData } from "@common/types/navigation.type";
+import { requests } from "@common/ipcRequests";
+import { SpriteType } from "@common/types/sprite.type";
 import { GameContext } from "@contexts/GameContext";
 import { SocketContext } from "@contexts/socket";
+import useSprites from "@hooks/useSprites";
 import { useContext, useEffect } from "react";
 
 const useBackgrounds = () => {
-    const {socket} = useContext(SocketContext)
     const {backgrounds, setBackgrounds} = useContext(GameContext);
+    const {sprites} = useSprites()
 
     useEffect(()=>{
-        if(!socket) return;
+        if(!sprites) return;
 
-        socket.emit(gameRequests.getNavigationData, null, (data: navigationData[])=>{
-            const bgs = data.map(d=> d.background);
+            const bgs = sprites.map(d=> d.background);
             setBackgrounds(bgs);
-        });
 
-    },[socket])
+    },[sprites])
 
     return {backgrounds};
 }

@@ -2,13 +2,14 @@ import React from 'react';
 import style from './style.module.css';
 import useSprites from '@hooks/useSprites';
 import Sprite from '../Sprite';
+import { events } from '@common/events';
 
 export const spritesContainerContext = React.createContext({} as any)
 
 const SpriteContainer = () => {
     const spriteContainerRef = React.useRef<HTMLDivElement>(null);
     const [containerSize, setContainerSize] = React.useState<{width: number, height: number}>({width: 0, height: 0});
-    const {sprites} = useSprites()
+    const {sprites} = useSprites({updateOnEvents: [events.spriteCreated, events.spriteUpdated, events.spriteDeleted]});
 
     React.useEffect(()=>{
         if(!spriteContainerRef.current) return;

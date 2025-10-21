@@ -7,6 +7,7 @@ export const GameContext = createContext({} as GameContextType);
 
 interface GameContextProviderProps {
     children: React.ReactNode;
+    autoResetTimeout: number;
 }
 
 interface GameContextType {
@@ -38,7 +39,7 @@ interface GameContextType {
     units?: import("@common/types/units.type").UnitType[];
 }
 
-const GameContextProvider = ({children}: GameContextProviderProps) => {
+const GameContextProvider = ({children, autoResetTimeout}: GameContextProviderProps) => {
     const { units } = useUnits();
     const [sprites, _setSprites] = useState<SpriteType[]>();
     const [backgrounds, setBackgrounds] = useState<backgroundType[]>();
@@ -52,7 +53,6 @@ const GameContextProvider = ({children}: GameContextProviderProps) => {
     const [cullingDistance, setCullingDistance] = useState(20000);
     const [spawnDistance, setSpawnDistance] = useState(2000);
     const [cameraFocusRange, setCameraFocusRange] = useState([3500,5500]);
-    const [autoResetAfterInactivity, setAutoResetAfterInactivity] = useState(30000); //in ms
 
     const setStartAtIndex = () => {
         if(!sprites || sprites.length === 0) return;
@@ -67,12 +67,12 @@ const GameContextProvider = ({children}: GameContextProviderProps) => {
     }, [sprites])
 
     useEffect(()=>{
-        if(!autoResetAfterInactivity) return;
-        if(autoResetAfterInactivity < 5000) return; //minimum 5 seconds
+        if(!autoResetTimeout) return;
+        if(autoResetTimeout < 5000) return; //minimum 5 seconds
 
         const interval = setInterval(()=>{
             const now = Date.now();
-            if(now - lastNavigationTime > autoResetAfterInactivity){
+            if(now - lastNavigationTime > autoResetTimeout){
                 setStartAtIndex();
                 setLastNavigationTime(Date.now());
                 console.log ("Auto-reset position due to inactivity");
@@ -80,7 +80,7 @@ const GameContextProvider = ({children}: GameContextProviderProps) => {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [autoResetAfterInactivity, lastNavigationTime, zIndex]);
+    }, [autoResetTimeout, lastNavigationTime, zIndex]);
 
     const setZPos = (newZPos: number) => {
         setLastNavigationTime(Date.now());
@@ -106,7 +106,6 @@ const GameContextProvider = ({children}: GameContextProviderProps) => {
         cullingDistance, setCullingDistance,
         spawnDistance, setSpawnDistance,
         cameraFocusRange, setCameraFocusRange,
-        autoResetAfterInactivity, setAutoResetAfterInactivity,
         backgrounds, setBackgrounds,
         units
     }

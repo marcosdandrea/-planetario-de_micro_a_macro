@@ -1,0 +1,28 @@
+.imageProperty {
+    display: flex;
+    column-gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imageSelection{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+    flex: 1;
+    gap: 1rem;
+    
+}
+
+.progressContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.74);
+}
