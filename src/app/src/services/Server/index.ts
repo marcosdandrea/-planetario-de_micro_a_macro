@@ -68,6 +68,29 @@ const init = async ({ serverPort, staticDir }: ServerParams) => {
                 });
             });
 
+            // SPA fallback: para rutas manejadas por el cliente (vite react-router, p.ej. /panel)
+            // Si existe staticDir y la petición es GET que acepta HTML y no es una ruta /api,
+            // devolver el index.html para que el router del cliente resuelva la ruta.
+            app.get('*', (req, res, next) => {
+                try {
+                    const isGetHtml = req.method === 'GET' && req.accepts && req.accepts('html');
+                    const isApi = req.path && req.path.startsWith('/api');
+
+                    if (staticDir && isGetHtml && !isApi) {
+                        res.sendFile(path.join(staticDir, 'index.html'), (err: any) => {
+                            if (err) {
+                                // si no encuentra el archivo, dejar que la cadena de middlewares continúe
+                                next(err);
+                            }
+                        });
+                    } else {
+                        next();
+                    }
+                } catch (e) {
+                    next(e);
+                }
+            });
+
             // Ruta por defecto
             app.get('/', (req, res) => {
                 if (staticDir) {
