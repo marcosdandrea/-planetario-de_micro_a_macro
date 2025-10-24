@@ -5,15 +5,15 @@ import style from './style.module.css';
 
 const TravelControl = ({ children }) => {
     const travelControlRef = useRef(null);
-    const {zMax, travelSpeed } = useContext(GameContext);
+    const {zMax, travelSpeed, minLimit, maxLimit } = useContext(GameContext);
     const { zPos, setZPos } = useTravelPosition();
 
     useEffect(() => {
         if (!travelControlRef.current) return;
         const handleWheel = (event: WheelEvent) => {
             let newZPos = zPos + event.deltaY * travelSpeed;
-            if (newZPos < 1000) newZPos = 1000;
-            if (newZPos > zMax * 0.95) newZPos = zMax * 0.95;
+            if (newZPos < minLimit) newZPos = minLimit;
+            if (newZPos > maxLimit) newZPos = maxLimit;
             setZPos(newZPos);
         }
 

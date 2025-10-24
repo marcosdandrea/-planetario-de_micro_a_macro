@@ -31,9 +31,12 @@ const SizeInput = ({ unsavedSprite, onChangeSize, onChangeUnit }: { unsavedSprit
     
     
     const handleValueChange = (e) => {
-        const value = parseFloat(e.target.value) || 0;
-        setSize(value);
-        onChangeSize(selectedUnit ? selectedUnit.toBase10(value) : value);
+        setSize(e.target.value);
+    }
+
+    const handleOnBlurValue = () => {
+        onChangeSize(selectedUnit ? selectedUnit.toBase10(size) : size);
+        onChangeSize(selectedUnit ? selectedUnit.toBase10(size) : size);
     }
 
     const handleUnitChange = (value: UnitName) => {
@@ -50,10 +53,6 @@ const SizeInput = ({ unsavedSprite, onChangeSize, onChangeUnit }: { unsavedSprit
         onChangeUnit(value);
     }
 
-    if (!selectedUnit) {
-        return <div>Seleccione un elemento</div>;
-    }
-
     return (
         <Space.Compact style={{ display: 'flex', width: '100%' }}>
             <Input
@@ -62,6 +61,7 @@ const SizeInput = ({ unsavedSprite, onChangeSize, onChangeUnit }: { unsavedSprit
                 }}
                 className={styles.noNumberArrows}
                 onChange={handleValueChange}
+                onBlur={handleOnBlurValue}
                 value={size || ''} 
                 placeholder="Ingrese el tamaño"
                 styles={{

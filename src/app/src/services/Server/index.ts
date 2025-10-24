@@ -97,8 +97,10 @@ const init = async ({ serverPort, staticDir }: ServerParams) => {
                 try {
                     const isGetHtml = req.method === 'GET' && req.accepts && req.accepts('html');
                     const isApi = req.path && req.path.startsWith('/api');
+                    const isStaticFile = req.path && /\.(png|jpg|jpeg|gif|svg|ico|css|js|json|woff|woff2|ttf|eot|mp4|webm|wav|mp3|pdf)$/i.test(req.path);
+                    const isDatabase = req.path && req.path.startsWith('/database');
 
-                    if (staticDir && isGetHtml && !isApi) {
+                    if (staticDir && isGetHtml && !isApi && !isStaticFile && !isDatabase) {
                         res.sendFile(path.join(staticDir, 'index.html'), (err: any) => {
                             if (err) {
                                 // si no encuentra el archivo, dejar que la cadena de middlewares continúe

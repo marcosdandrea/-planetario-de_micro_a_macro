@@ -5,7 +5,20 @@ import { getDatabasePath } from "@src/utils/pathResolver.js";
 export const readDbFile = async () => {
     return new Promise(async (resolve, reject) => {
         const databasePath = await getDatabasePath();
-        fs.readFile(path.join(databasePath, 'db.json'), 'utf-8', (err, data) => {
+        const dbFilePath = path.join(databasePath, 'db.json');
+        
+        // Verificar si el directorio existe, si no, crearlo
+        if (!fs.existsSync(databasePath)) {
+            fs.mkdirSync(databasePath, { recursive: true });
+        }
+        
+        // Verificar si el archivo existe, si no, crearlo con un array vacío
+        if (!fs.existsSync(dbFilePath)) {
+            const initialData = JSON.stringify([], null, 2);
+            fs.writeFileSync(dbFilePath, initialData, 'utf-8');
+        }
+        
+        fs.readFile(dbFilePath, 'utf-8', (err, data) => {
             if (err) {
                 reject(err);
                 return;
@@ -23,7 +36,14 @@ export const readDbFile = async () => {
 export const writeDbFile = async (data: any) => {
     return new Promise(async (resolve, reject) => {
         const databasePath = await getDatabasePath();
-        fs.writeFile(path.join(databasePath, 'db.json'), JSON.stringify(data, null, 2), 'utf-8', (err) => {
+        const dbFilePath = path.join(databasePath, 'db.json');
+        
+        // Verificar si el directorio existe, si no, crearlo
+        if (!fs.existsSync(databasePath)) {
+            fs.mkdirSync(databasePath, { recursive: true });
+        }
+        
+        fs.writeFile(dbFilePath, JSON.stringify(data, null, 2), 'utf-8', (err) => {
             if (err) {
                 reject(err);
                 return;

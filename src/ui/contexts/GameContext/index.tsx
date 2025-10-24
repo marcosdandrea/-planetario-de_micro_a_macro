@@ -37,6 +37,8 @@ interface GameContextType {
     backgrounds?: backgroundType[];
     setBackgrounds?: (newBackgrounds: backgroundType[]) => void;
     units?: import("@common/types/units.type").UnitType[];
+    minLimit?: number;
+    maxLimit?: number;
 }
 
 const GameContextProvider = ({children, autoResetTimeout}: GameContextProviderProps) => {
@@ -53,6 +55,9 @@ const GameContextProvider = ({children, autoResetTimeout}: GameContextProviderPr
     const [cullingDistance, setCullingDistance] = useState(20000);
     const [spawnDistance, setSpawnDistance] = useState(2000);
     const [cameraFocusRange, setCameraFocusRange] = useState([3500,5500]);
+
+    const minLimit = 400;
+    const maxLimit = zMax - 100;
 
     const setStartAtIndex = () => {
         if(!sprites || sprites.length === 0) return;
@@ -88,7 +93,7 @@ const GameContextProvider = ({children, autoResetTimeout}: GameContextProviderPr
     };
 
     const setSprites = (newSprites: SpriteType[]) => {
-        _setZMax(newSprites.length * distanceBetweenSprites);
+        _setZMax((newSprites.length * distanceBetweenSprites) - distanceBetweenSprites / 1.3);
         _setSprites(newSprites);
     };
 
@@ -107,7 +112,8 @@ const GameContextProvider = ({children, autoResetTimeout}: GameContextProviderPr
         spawnDistance, setSpawnDistance,
         cameraFocusRange, setCameraFocusRange,
         backgrounds, setBackgrounds,
-        units
+        units,
+        minLimit, maxLimit
     }
 
     return ( 

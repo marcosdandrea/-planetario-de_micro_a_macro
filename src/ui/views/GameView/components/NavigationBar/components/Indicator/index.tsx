@@ -77,8 +77,10 @@ const Indicator = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement
         const currentDistance = zPos - prevStep.zPos;
         const interpolationFactor = totalDistance === 0 ? 0 : Math.max(0, Math.min(1, currentDistance / totalDistance));
 
-        // Mantiene la unidad del step previo hasta alcanzar el siguiente
-        const currentUnit = prevStep.unit;
+        // Cambia la unidad en el punto medio si las unidades son diferentes
+        const currentUnit = prevStep.unit !== nextStep.unit && interpolationFactor >= 0.5 
+            ? nextStep.unit 
+            : prevStep.unit;
         
         // Para interpolación, necesitamos convertir ambos valores a la misma unidad
         const currentUnitData = units?.find(u => u.name === currentUnit);

@@ -40,6 +40,7 @@
     "antd": "^5.27.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "lucide-react": "^0.548.0",
     "middleware": "^1.0.0",
     "os-utils": "^0.0.14",
     "react": "^18.3.1",

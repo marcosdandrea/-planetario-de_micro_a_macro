@@ -154,7 +154,7 @@ const SpriteConfiguration = () => {
                         acceptedFormats={['image/jpeg', 'image/png']}
                         allowDelete
                         requiredSize={{ width: 2160, height: 3840 }}
-                        image={unsavedSprite?.background.image || null}
+                        image={unsavedSprite?.background?.image || null}
                         onSelectImage={(image) => {
                             setUnsavedSprite({
                                 ...unsavedSprite,

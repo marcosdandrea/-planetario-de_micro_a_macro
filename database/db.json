@@ -1,173 +1,22 @@
 [
   {
-    "id": "2",
-    "image": "virus.png",
-    "displayName": "Virus",
-    "description": "Partícula biológica típica del orden de los 100 nm",
-    "unit": "nanómetro",
-    "base10Size": 1.0000000000000001e-7,
-    "background": {
-      "image": null
-    }
+    "id": "b0b286b2-b39a-4bcb-a6c4-2cb7a122f603",
+    "displayName": "Atomo de Hidrógeno",
+    "description": "Elemento primitivo de la tabla periódica",
+    "image": "atomo1000x1000.png",
+    "base10Size": 1.0000000000000002e-10,
+    "unit": "nanómetro"
   },
   {
-    "id": "3",
-    "image": "arena.png",
-    "displayName": "Grano de arena",
-    "description": "Partícula mineral visible a simple vista",
-    "unit": "milímetro",
-    "base10Size": 0.0005,
+    "id": "a4c0a559-3052-42ab-90eb-0af354b478d9",
+    "displayName": "Luna",
+    "description": "Diámetro ",
+    "image": "luna1000x1000.png",
+    "isIndex": false,
+    "base10Size": 4000000,
+    "unit": "kilómetro",
     "background": {
       "image": "espacio.jpg"
-    },
-    "isIndex": false
-  },
-  {
-    "id": "4",
-    "image": "Alfajon Habanna.png",
-    "displayName": "Alfajor",
-    "description": "Galleta rellena típica",
-    "unit": "metro",
-    "base10Size": 0.06,
-    "background": {
-      "image": null
-    },
-    "isIndex": false
-  },
-  {
-    "id": "5",
-    "image": "Pelota de Playa.png",
-    "displayName": "Pelota de playa",
-    "description": "Esfera inflable de uso recreativo",
-    "unit": "metro",
-    "base10Size": 0.42,
-    "background": {
-      "image": null
-    }
-  },
-  {
-    "id": "6",
-    "image": "mate.png",
-    "displayName": "Mate",
-    "description": "Recipiente para infusión típica rioplatense",
-    "unit": "metro",
-    "base10Size": 0.12,
-    "background": {
-      "image": null
-    }
-  },
-  {
-    "id": "7",
-    "image": "Humano.png",
-    "displayName": "Humano",
-    "description": "Ser humano adulto promedio",
-    "unit": "metro",
-    "base10Size": 1.75,
-    "isIndex": true,
-    "background": {
-      "image": null
-    }
-  },
-  {
-    "id": "8",
-    "image": "omnibus.png",
-    "displayName": "Ómnibus",
-    "description": "Vehículo de transporte de pasajeros",
-    "unit": "metro",
-    "base10Size": 12,
-    "background": {
-      "image": null
-    }
-  },
-  {
-    "id": "9",
-    "image": "estacion internacional.png",
-    "displayName": "Estación Espacial Internacional",
-    "description": "Complejo orbital tripulado",
-    "unit": "metro",
-    "base10Size": 109,
-    "background": {
-      "image": "universe.jpg"
-    }
-  },
-  {
-    "id": "10",
-    "image": "luna.png",
-    "displayName": "La Luna",
-    "description": "Satélite natural de la Tierra (diámetro)",
-    "unit": "kilómetro",
-    "base10Size": 3474800,
-    "background": {
-      "image": "universe.jpg"
-    }
-  },
-  {
-    "id": "11",
-    "image": "tierra.png",
-    "displayName": "Planeta Tierra",
-    "description": "Nuestro planeta (diámetro ecuatorial)",
-    "unit": "kilómetro",
-    "base10Size": 12742000,
-    "background": {
-      "image": "universe.jpg"
-    }
-  },
-  {
-    "id": "12",
-    "image": "marte.png",
-    "displayName": "Marte",
-    "description": "Planeta rocoso (diámetro)",
-    "unit": "kilómetro",
-    "base10Size": 6779000,
-    "background": {
-      "image": "universe.jpg"
-    },
-    "isIndex": false
-  },
-  {
-    "id": "13",
-    "image": "jupiter.png",
-    "displayName": "Júpiter",
-    "description": "El planeta más grande (diámetro ecuatorial)",
-    "unit": "kilómetro",
-    "base10Size": 139820000,
-    "background": {
-      "image": "universe.jpg"
-    }
-  },
-  {
-    "id": "14",
-    "image": "saturno.png",
-    "displayName": "Saturno",
-    "description": "Gigante gaseoso (diámetro ecuatorial)",
-    "unit": "kilómetro",
-    "base10Size": 116460000,
-    "background": {
-      "image": "universe.jpg"
-    }
-  },
-  {
-    "id": "9bb5e3dd-68ad-48f0-9ebc-e0245aac10fd",
-    "displayName": "Átomo de Hidrógeno",
-    "description": "Elemento mas básico del universo",
-    "image": "atomo1000x1000.png",
-    "isIndex": false,
-    "base10Size": 1.0000000000000001e-11,
-    "unit": "nanómetro",
-    "background": {
-      "image": null
-    }
-  },
-  {
-    "id": "3288677f-69ba-4ec0-97b1-d4f8a06ae6ef",
-    "displayName": "",
-    "description": "",
-    "image": "transparente_1000x1000.png",
-    "isIndex": false,
-    "base10Size": 6800000,
-    "unit": "kilómetro",
-    "background": {
-      "image": null
     }
   }
 ]
