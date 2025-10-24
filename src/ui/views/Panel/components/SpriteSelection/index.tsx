@@ -39,7 +39,7 @@ const SpriteSelection = () => {
             items={sprites?.map((sprite, index) => {
                 const isSelected = selectedSprite?.id === sprite.id;
                 return {
-                    title: sprite.displayName,
+                    title: sprite.displayName !== "" ? sprite.displayName :  `[Separador]`,
                     description: getSize(sprite),
                     className: isSelected ? styles.selectedStep : ''
                 }

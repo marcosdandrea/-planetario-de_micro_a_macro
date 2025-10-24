@@ -9,10 +9,10 @@ const Header = () => {
                 <div className={style.logoLab}/>
             </div>
             <div className={style.title}>
-                De lo Micro <br/>a lo Macro
+                De lo Micro <br/>a lo Macro.
             </div>
             <div className={style.subtitle}>
-                Navega deslizando <br/> la esfera
+                Navegá deslizando <br/> la esfera.
             </div>
         </div>);
 }

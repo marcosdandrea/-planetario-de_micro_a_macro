@@ -14,6 +14,9 @@ const Labels = React.memo(({title, subtitle, displaySize, alignment}:{title: str
         ));
     };
 
+    if (!title)
+        return <></>
+
     return (
         <div 
             style={{

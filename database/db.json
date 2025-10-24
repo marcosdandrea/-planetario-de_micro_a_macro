@@ -157,5 +157,17 @@
     "background": {
       "image": null
     }
+  },
+  {
+    "id": "3288677f-69ba-4ec0-97b1-d4f8a06ae6ef",
+    "displayName": "",
+    "description": "",
+    "image": "transparente_1000x1000.png",
+    "isIndex": false,
+    "base10Size": 6800000,
+    "unit": "kilómetro",
+    "background": {
+      "image": null
+    }
   }
 ]

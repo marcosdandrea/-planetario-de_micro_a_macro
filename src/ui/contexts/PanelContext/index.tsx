@@ -53,6 +53,7 @@ const PanelContextProvider = ({ children }) => {
             ]});
 
 
+            
     // Seleccionar automáticamente el primer sprite solo en la carga inicial
     useEffect(() => {
         if (!sprites?.length) return
