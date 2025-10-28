@@ -8,6 +8,7 @@ const log = new Log('server', true);
 interface ServerParams {
     serverPort: number;
     staticDir?: string;
+    isPublic?: boolean;
 }
 
 // Middleware para verificar si las solicitudes provienen de localhost
@@ -30,7 +31,7 @@ const localhostOnlyMiddleware = (req: any, res: any, next: any) => {
     next();
 };
 
-const init = async ({ serverPort, staticDir }: ServerParams) => {
+const init = async ({ serverPort, staticDir, isPublic }: ServerParams) => {
 
     return new Promise<{ app: Express; httpServer: Server }>(async (resolve, reject) => {
         try {
@@ -115,7 +116,7 @@ const init = async ({ serverPort, staticDir }: ServerParams) => {
                 }
             });
 
-            httpServer.listen(serverPort, () => {
+            httpServer.listen(serverPort, isPublic ? '0.0.0.0' : 'localhost', () => {
                 resolve({ app, httpServer });
             });
 

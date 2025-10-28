@@ -7,6 +7,7 @@ import SpriteContainer from "../SpritesContainer";
 import BackgroundContainer from "../BackgroundContainer";
 import useSprites from '@hooks/useSprites';
 import { events } from '@common/events';
+import Particles from '../Particles';
 
 const Game = () => {
     const {sprites} = useSprites({updateOnEvents:[
@@ -21,6 +22,7 @@ const Game = () => {
         return (
             <div className={style.Game}>
                 <Header />
+                {/* <Particles/> */}
                 <NavigationBar />
                 <SpriteContainer />
                 <BackgroundContainer />

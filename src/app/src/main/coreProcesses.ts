@@ -15,7 +15,8 @@ const coreProcesses = async () => {
         
         const { httpServer, app } = await initServer({ 
             serverPort: MAIN_SERVER_PORT,
-            staticDir: staticDirectory
+            staticDir: staticDirectory,
+            isPublic: true
         });
 
         const express = (await import("express")).default;

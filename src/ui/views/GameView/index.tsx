@@ -9,7 +9,9 @@ const GameView = () => {
         <GameContextProvider
             autoResetTimeout={120000}>
             <TravelControl>
-                <AspectRatio aspectRatio={9 / 16}>
+                <AspectRatio 
+                    aspectRatio={9 / 16} 
+                    aspectRatioString="9:16">
                     <Game/>
                 </AspectRatio>
             </TravelControl>

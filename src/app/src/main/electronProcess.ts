@@ -9,11 +9,7 @@ const electronProcess = async () => {
         const { createMainWindow } = await import('@domain/useCases/windowManager/index.js')
         await createMainWindow({
             enableMenuBar: false,
-            /* 
-            startFullscreen: false,
-            defaultSize: { width: 300, height: 300 },
-            defaultPosition: { x: 200, y: 200 } 
-            */
+            startFullscreen: true,
         })
 
         log.info('App is ready');

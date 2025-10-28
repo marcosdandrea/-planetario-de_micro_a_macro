@@ -8,11 +8,11 @@ const FallbackNoSprites = () => {
         <div className={style.FallbackNoSprites}>
             <PackageOpen size={100} absoluteStrokeWidth />
             <Text
-            style={{fontFamily: "Lato Black", fontSize: "24px", marginBottom: "16px"}}>
+                style={{ fontFamily: "Lato Black", fontSize: "24px", marginBottom: "16px" }}>
                 No hay contenido para mostrar.
             </Text>
             <Text
-            style={{fontFamily: "Lato"}}>
+                style={{ fontFamily: "Lato" }}>
                 Por favor, añade sprites a la escena desde el panel de edición.
             </Text>
         </div>
