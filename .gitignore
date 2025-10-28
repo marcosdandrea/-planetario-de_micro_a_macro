@@ -31,3 +31,7 @@ nextSteps.txt
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Video files
+*.webm
+*.crdownload
