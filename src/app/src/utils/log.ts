@@ -1,34 +1,14 @@
 
+import 'dotenv/config';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as os from 'os';
+import { getLogsPath } from './pathResolver';
 
-const WRITE_LOG_TO_FILE = process.env.WRITE_LOG_TO_FILE === 'true';
+const WRITE_LOG_TO_FILE = process.env.WRITE_LOG_TO_FILE || true;
 const WRITE_LOG_LEVEL = process.env.WRITE_LOG_LEVEL || 'info';
 const WRITE_LOG_MAX_FILE_COUNT = process.env.WRITE_LOG_MAX_FILE_COUNT ? parseInt(process.env.WRITE_LOG_MAX_FILE_COUNT) : 50;
 
-// Función para determinar la ubicación apropiada de logs
-const getLogDirectory = (): string => {
-    // Si se especifica una ruta en la variable de entorno, usarla
-    if (process.env.WRITE_LOG_DIR_PATH) {
-        return process.env.WRITE_LOG_DIR_PATH;
-    }
-
-    // Detectar si es desarrollo
-    const isDev = process.env.NODE_ENV === 'development';
-    if (isDev) {
-        return './logs';
-    }
-
-    // Para producción (compilado), SIEMPRE usar directorio junto al ejecutable
-    const execPath = process.execPath;
-    const execDir = path.dirname(execPath);
-    const logsPath = path.join(execDir, 'logs');
-    
-    return logsPath;
-};
-
-const WRITE_LOG_DIR_PATH = getLogDirectory();
+const WRITE_LOG_DIR_PATH = getLogsPath()
 
 export class Log {
     source: string;
@@ -145,11 +125,6 @@ export class Log {
             console.debug(`[${this.source}] ${message}`, ...args);
         }
         this.writeToFile('debug', message, ...args);
-    }
-
-    // Método público para obtener la ruta absoluta de logs
-    getLogDirectory(): string {
-        return path.resolve(WRITE_LOG_DIR_PATH);
     }
 
     // Método público para obtener la ruta del archivo de log actual

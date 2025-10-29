@@ -7,6 +7,7 @@ import fs from "fs";
 import { Log } from "@src/utils/log";
 import EventManager from "@src/domain/entities/eventManager";
 import { events } from "@common/events";
+import { getDatabasePath } from "@src/utils/pathResolver";
 const log = new Log("Panel Services", true);
 
 const eventManager = new EventManager();
@@ -121,7 +122,7 @@ export const uploadSpriteImage = async (chunkedBuffer: ChunkedImageBuffer, callb
 
     try {
         // Ensure the database directory exists
-        const databaseDir = path.join(process.cwd(), 'database');
+        const databaseDir = await getDatabasePath();
         if (!fs.existsSync(databaseDir)) {
             fs.mkdirSync(databaseDir, { recursive: true });
         }

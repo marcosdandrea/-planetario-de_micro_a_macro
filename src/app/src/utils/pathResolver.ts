@@ -23,14 +23,12 @@ export async function getAssetPath() {
   return path.join(appPath, isDev ? '.' : '..', '/src/assets');
 }
 
-export async function getDatabasePath() {
-  if (isHeadless) {
-    return path.join(process.cwd(), 'database');
-  } else {
-    const { app } = await import('electron');
-    const appPath = app.getAppPath();
-    return path.join(appPath, 'database');
-  }
+export function getDatabasePath() {
+  return path.join(process.cwd(), 'database');
+}
+
+export function getLogsPath() {
+  return path.join(process.cwd(), 'logs');
 }
 
 export async function getResourcesPath() {
